@@ -1,0 +1,564 @@
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #3498db;
+    --danger-color: #e74c3c;
+    --success-color: #27ae60;
+    --text-color: #333333;
+    --light-gray: #f5f5f5;
+}
+
+/* Estilos gerais */
+body {
+    font-family: "Cabin", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 { 
+    margin: 0;
+    line-height: 1.2;
+}
+
+h1 { 
+    font-size: 2.2rem; 
+}
+
+h2 { 
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+h3 {
+    font-size: 1.3rem;
+}
+
+/* Estrutura principal */
+.app-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+@media (max-width: 768px) {
+    .app-container { 
+        grid-template-columns: 1fr; 
+    }
+}
+
+/* Seção do formulário */
+.form-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Seletor de tipo de crachá */
+.badge-type-selector {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--light-gray);
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.type-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.type-btn {
+    flex: 1;
+    padding: 12px 20px;
+    border: 2px solid var(--primary-color);
+    background-color: white;
+    color: var(--primary-color);
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.type-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.type-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.form-group { 
+    margin-bottom: 20px; 
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+input[type="text"],
+input[type="file"],
+select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: inherit;
+}
+
+/* Upload de foto */
+.photo-upload-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border: 2px dashed #aaa;
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+
+.photo-preview-container {
+    position: static;
+    width: 100%;
+    height: 100%;
+}
+
+.preview-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 100%;
+    max-height: 100%;
+    display: none;
+    z-index: 5;
+}
+
+.photo-placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #555;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.photo-placeholder:hover {
+    background-color: #e8e8e8;
+}
+
+.file-input {
+    position: absolute;
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+
+/* Controles de redimensionamento */
+.resize-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    right: 0;
+    display: none;
+    justify-content: center;
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+    border-radius: 4px;
+    z-index: 10;
+}
+
+.resize-btn {
+    background: white;
+    color: #333;
+    border: none;
+    border-radius: 4px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: inherit;
+}
+
+.resize-btn:hover {
+    background-color: #f0f0f0;
+}
+
+.resize-value {
+    color: white;
+    min-width: 50px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Botões */
+.btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+    width: 100%;
+    font-family: inherit;
+}
+
+.btn:hover { 
+    background-color: #1a252f; 
+}
+
+.btn-export {
+    background-color: var(--secondary-color);
+}
+
+.btn-export:hover { 
+    background-color: #2980b9; 
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+}
+
+.btn-danger:hover { 
+    background-color: #c0392b; 
+}
+
+.btn-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Pré-visualização */
+.preview-section {
+    position: sticky;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preview-section h2 {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* Estilos do crachá */
+.badge {
+    width: 300px;
+    height: 450px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    border: 1px solid #ddd;
+}
+
+.badge-header {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background: white;
+    border-bottom: 1px solid #eee;
+    flex-shrink: 0;
+}
+
+.logo-fixa {
+    max-height: 90px;
+    max-width: 270px;
+    width: auto;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.badge-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 10px; /* Reduzido de 15px */
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5%;
+    box-sizing: border-box;
+}
+
+.badge .photo-preview {
+    width: 158px;
+    height: 158px;
+    border: 3px solid #ddd;
+    margin: 0 auto;
+    overflow: hidden;
+    background: #eee;
+    position: relative;
+}
+
+.badge .photo-preview img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transform-origin: center center;
+    transition: transform 0.1s ease;
+}
+
+.badge-name {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: var(--text-color);
+    margin: auto;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+
+.badge-position {
+    font-size: 16px;
+    text-align: center;
+    color: #555;
+    margin-bottom: 2px;
+    line-height: 1.2;
+    text-transform: uppercase;
+}
+.badge-rqe::before {
+    content: "RQE Nº ";
+}
+.badge-rqe {
+    font-size: 18px;
+    text-align: center;
+    color: #000000;
+    margin-top: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.badge-id {
+    font-size: 18px; /* Reduzido de 18px */
+    text-align: center;
+    color: #000000;
+    margin-top: 5px; /* Reduzido de 10px */
+    font-weight: bold;
+    text-transform: uppercase;
+    word-break: break-all; /* Quebra de linha se necessário */
+    padding: 0 10px; /* Adicionado padding */
+}
+
+.badge-type-medico .badge-content {
+    gap: 8px;
+    padding-top: 3%;
+}
+
+.badge-type-medico .badge-id {
+    font-size: 14px;
+    margin-top: 3px;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+    animation: modalFadeIn 0.3s;
+}
+
+.close {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover { 
+    color: var(--primary-color); 
+}
+
+.badge-modal {
+    transform: scale(1.5);
+    transform-origin: top center;
+    margin: 40px auto;
+}
+
+@keyframes modalFadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(-50px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .preview-section {
+        position: static;
+        order: -1;
+    }
+    
+    .badge {
+        width: 250px;
+        height: 375px;
+    }
+    
+    .badge .photo-preview {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .badge-name { 
+        font-size: 18px; 
+    }
+    
+    .badge-position { 
+        font-size: 14px; 
+    }
+    
+    .badge-modal { 
+        transform: scale(1); 
+    }
+    
+    .type-buttons {
+        flex-direction: column;
+    }
+}
+
+/* Estilos de impressão */
+@media print {
+    body * { 
+        visibility: hidden; 
+    }
+    
+    .badge, .badge * { 
+        visibility: visible; 
+    }
+    
+    @page {
+        size: 54mm 86mm;
+        margin: 0;
+    }
+    
+    body {
+        margin: 0;
+        padding: 0;
+        background: white !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    
+    .badge {
+        width: 53.98mm !important;
+        height: 85.60mm !important;
+        margin: 0 !important;
+        padding: 2mm !important;
+        box-shadow: none !important;
+        border: none !important;
+    }
+    
+    .badge-header { 
+        height: 18mm !important; 
+        padding: 1mm !important; 
+    }
+    
+    .badge .photo-preview {
+        width: 32mm !important;
+        height: 32mm !important;
+        margin: 2mm auto !important;
+    }
+    
+    .badge-name { 
+        font-size: 10pt !important; 
+        margin: 1mm 0 !important; 
+    }
+    
+    .badge-position { 
+        font-size: 9pt !important; 
+        margin: 0 0 1mm !important; 
+    }
+        .badge-id { 
+        font-size: 8pt !important; 
+    }
+    
+    .no-print, 
+    .btn, 
+    .form-section, 
+    header, 
+    .modal {
+        display: none !important;
+    }
+}

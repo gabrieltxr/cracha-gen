@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Crachás</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsbarcode/3.11.5/JsBarcode.all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cabin:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Gerador de Crachás</h1>
+        </div>
+    </header>
+    <main class="container">
+        <div class="app-container">
+            <section class="form-section">
+                <!-- Submenu de Tipo de Crachá -->
+                <div class="badge-type-selector">
+                    <h3>Tipo de Crachá</h3>
+                    <div class="type-buttons">
+                        <button type="button" class="type-btn active" data-type="funcionario">Funcionário</button>
+                        <button type="button" class="type-btn" data-type="medico">Médico</button>
+                    </div>
+                </div>
+
+                <h2>Informações do Crachá</h2>
+                
+                <div class="form-group">
+                    <label for="employeeName">Nome Completo</label>
+                    <input type="text" id="employeeName" placeholder="Digite o nome completo" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="employeePosition">Cargo</label>
+                    <input type="text" id="employeePosition" placeholder="Digite o cargo" required>
+                </div>
+
+                <!-- Campo RQE (apenas para médicos) -->
+                <div class="form-group" id="rqeGroup" style="display: none;">
+                    <label for="employeeRqe">RQE</label>
+                    <input type="text" id="employeeRqe" placeholder="Digite o RQE">
+                </div>
+                
+                <div class="form-group">
+                    <label for="employeeId">Matrícula/ID</label>
+                    <input type="text" id="employeeId" placeholder="Digite a matrícula ou ID" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Foto do Funcionário</label>
+                    <div class="photo-upload-container" id="photoUploadContainer">
+                        <input type="file" id="employeePhoto" class="file-input" accept="image/*" required>
+                        <div class="photo-preview-container">
+                            <img id="photoPreview" class="preview-image" style="display: none;" alt="Pré-visualização da foto">
+                            <label for="employeePhoto" class="photo-placeholder" id="photoPlaceholder">
+                                Clique para selecionar uma foto
+                            </label>
+                        </div>
+                        <div class="resize-controls" style="display: none;">
+                            <button type="button" class="resize-btn" id="zoomOut">-</button>
+                            <span class="resize-value" id="zoomValue">100%</span>
+                            <button type="button" class="resize-btn" id="zoomIn">+</button>
+                            <button type="button" class="resize-btn" id="resetZoom">Reset</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="btn-group">
+                    <button id="generateBtn" class="btn" type="button">Gerar Crachá</button>
+                    <button id="resetBtn" class="btn btn-danger" type="button">Limpar</button>
+                </div>
+                <div class="btn-group">
+                    <button id="exportImageBtn" class="btn btn-export" type="button">Exportar Imagem</button>
+                    <button id="printBtn" class="btn btn-export" type="button">Imprimir Crachá</button>
+                </div>
+            </section>
+            
+            <section class="preview-section">
+                <h2>Pré-visualização</h2>
+                <div class="badge" id="badgePreview">
+                    <div class="badge-header">
+                        <img src="assets/logo_scasa.png" alt="Logo Santa Casa" class="logo-fixa">
+                    </div>
+                    <div class="badge-content">
+                        <div class="photo-preview">
+                            <img id="badgePhoto" src="data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='60' fill='%23ddd'/%3E%3Cpath fill='%23aaa' d='M60 30c-16.54 0-30 13.46-30 30 0 16.54 13.46 30 30 30 16.54 0 30-13.46 30-30 0-16.54-13.46-30-30-30zm15 36.6h-6.6v6.6H51.6v-6.6H45v-13.2h6.6v-6.6h16.8v6.6h6.6v13.2z'/%3E%3C/svg%3E" alt="Foto do funcionário">
+                        </div>
+                        
+                        <div class="badge-name" id="previewName">Nome do Funcionário</div>
+                        <div class="badge-position" id="previewPosition">Cargo/Função</div>
+                        
+                        <!-- Campo RQE no crachá (oculto por padrão) -->
+                        <div class="badge-rqe" id="previewRqe" style="display: none;">RQE</div>
+                        
+                        <div class="badge-id" id="previewId">Matrícula</div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Visualizador de Pré-visualização Ampliada -->
+    <div id="modalPreview" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modalBadgePreview" class="badge-modal"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
