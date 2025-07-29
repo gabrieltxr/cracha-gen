@@ -169,8 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
                             margin-bottom: 1mm;
                         }
                         .logo-fixa {
-                            max-height: 18mm;
-                            max-width: 45mm;
+                            max-height: 35mm;
+                            max-width: 55mm;
                             width: auto;
                             height: auto;
                             display: block;
@@ -206,20 +206,20 @@ document.addEventListener('DOMContentLoaded', function() {
                             transform-origin: center center;
                         }
                         .badge-name {
-                            font-size: 13pt;
+                            font-size: 10pt;
                             font-weight: bold;
                             text-align: center;
-                            margin: 1mm 0;
+                            margin: 2mm 0;
                             max-width: 50mm;
                             overflow: hidden;
                             text-overflow: ellipsis;
                             line-height: 1.2;
                         }
                         .badge-position {
-                            font-size: 11pt;
+                            font-size: 10pt;
                             text-align: center;
                             margin: 0 0 2mm;
-                            color: #555;
+                            color: #000000;
                             font-weight: bold;
                         }
                         .badge-rqe::before {
@@ -228,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             text-transform: none;
                         }   
                         .badge-id {
-                            font-size: 12pt;
+                            font-size: 10pt;
                             text-align: center;
                             color: #000000;
                             font-weight: bold;
